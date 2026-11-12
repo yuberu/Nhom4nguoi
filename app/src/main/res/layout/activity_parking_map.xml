@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F6FA"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sơ đồ Bãi đỗ xe Thông minh"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#2C3E50"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trạng thái thời gian thực các khu vực đỗ xe"
+            android:textSize="14sp"
+            android:textColor="#7F8C8D"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Chú thích trạng thái -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="■ Trống"
+                android:textColor="#27AE60"
+                android:textStyle="bold"
+                android:layout_marginRight="24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="■ Đang đỗ"
+                android:textColor="#C0392B"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Khu vực Ô tô (Zone A) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Khu vực A: Xe Ô tô"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#2980B9"
+            android:layout_marginBottom="8dp"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:alignmentMode="alignMargins"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="A-01 (Đang đỗ)"
+                android:backgroundTint="#C0392B"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="A-02 (Trống)"
+                android:backgroundTint="#27AE60"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="A-03 (Trống)"
+                android:backgroundTint="#27AE60"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="A-04 (Đang đỗ)"
+                android:backgroundTint="#C0392B"
+                android:textColor="#FFFFFF"/>
+        </GridLayout>
+
+        <!-- Khu vực Xe máy (Zone B) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Khu vực B: Xe máy"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#2980B9"
+            android:layout_marginBottom="8dp"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:alignmentMode="alignMargins">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="B-01 (Đang đỗ)"
+                android:backgroundTint="#C0392B"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="B-02 (Đang đỗ)"
+                android:backgroundTint="#C0392B"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="B-03 (Trống)"
+                android:backgroundTint="#27AE60"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="B-04 (Trống)"
+                android:backgroundTint="#27AE60"
+                android:textColor="#FFFFFF"/>
+        </GridLayout>
+
+    </LinearLayout>
+</ScrollView>
