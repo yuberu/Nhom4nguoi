@@ -43,17 +43,18 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Tạm thời giả lập xác thực phân quyền chuẩn bị cho kết nối API Backend
+        // Phân quyền đăng nhập
         if (username.equals("admin") && password.equals("123456")) {
-            Toast.makeText(this, "Đăng nhập thành công với quyền Admin!", Toast.LENGTH_SHORT).show();
-
-            // Chuyển sang màn hình Dashboard chính
+            Toast.makeText(this, "Đăng nhập Admin thành công!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("USER_ROLE", "ADMIN");
             startActivity(intent);
-            finish(); // Đóng LoginActivity để không quay lại được bằng nút Back
+            finish();
         } else {
-            Toast.makeText(this, "Tài khoản hoặc mật khẩu không chính xác!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Đăng nhập Nhân viên thành công!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, StaffListActivity.class);
+            intent.putExtra("USER_ROLE", "STAFF");
+            startActivity(intent);
+            finish();
         }
-    }
-}
+    }}

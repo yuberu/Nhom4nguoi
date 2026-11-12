@@ -59,4 +59,19 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
     }
-}
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Lưu lại dữ liệu đang có trên giao diện (ví dụ: chuỗi text trong một ô EditText nào đó)
+        // outState.putString("key_saved_text", edtName.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Khôi phục lại dữ liệu khi xoay màn hình xong
+        if (savedInstanceState != null) {
+            // String savedText = savedInstanceState.getString("key_saved_text");
+            // edtName.setText(savedText);
+        }
+    }}
