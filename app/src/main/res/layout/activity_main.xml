@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#F5F6FA">
+
+    <!-- Header chào mừng -->
+    <TextView
+        android:id="@+id/txtWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xin chào, Quản trị viên"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#2C3E50"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hệ thống Quản lý Bãi giữ xe thông minh"
+        android:textSize="14sp"
+        android:textColor="#7F8C8D"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Lưới các chức năng quản lý -->
+    <Button
+        android:id="@+id/btnParkingMap"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="1. Sơ đồ bãi xe theo thời gian thực"
+        android:backgroundTint="#27AE60"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnVehicleList"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="2. Quản lý Xe vào/ra (RecyclerView)"
+        android:backgroundTint="#2980B9"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnStaff"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="3. Quản lý Nhân sự &amp; Ca trực"
+        android:backgroundTint="#8E44AD"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnReport"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="4. Báo cáo &amp; Biểu đồ doanh thu"
+        android:backgroundTint="#D35400"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Nút đăng xuất -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Đăng xuất hệ thống"
+        android:backgroundTint="#C0392B"
+        android:textColor="#FFFFFF"/>
+
+</LinearLayout>
