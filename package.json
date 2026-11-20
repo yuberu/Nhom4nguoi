@@ -1,0 +1,36 @@
+{
+  "name": "bai_xe",
+  "version": "1.0.0",
+  "description": "Flutter 3.35+ / Dart 3. Gọi API backend Node.js (Express + pg) trên Render, ảnh lưu ở Supabase Storage.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuberu/Nhom4nguoi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/yuberu/Nhom4nguoi/issues"
+  },
+  "homepage": "https://github.com/yuberu/Nhom4nguoi#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^4.22.3",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
