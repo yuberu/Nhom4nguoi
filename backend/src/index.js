@@ -7,6 +7,7 @@ import authRoutes from './routes/auth.js';
 import baiXeRoutes from './routes/bai-xe.js';
 import datChoRoutes from './routes/dat-cho.js';
 import luotGuiRoutes from './routes/luot-gui.js';
+import veThangRouter from './routes/ve-thang.js';
 dotenv.config();
 
 const app = express();
@@ -20,6 +21,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/bai-xe', baiXeRoutes);
 app.use('/api/dat-cho', datChoRoutes);
 app.use('/api/luot-gui', luotGuiRoutes);
+app.use('/api/ve-thang', veThangRouter);
 
 // Trang kiểm tra Backend
 app.get('/', (req, res) => {

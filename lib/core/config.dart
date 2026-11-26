@@ -1,12 +1,13 @@
+
 class AppConfig {
   AppConfig._();
 
-  /// Đổi bằng: flutter run --dart-define=API_URL=https://ten-app.onrender.com/api
+  /// Địa chỉ Backend trên Android Emulator
   static const String baseUrl = String.fromEnvironment(
     'API_URL',
-    defaultValue: 'https://your-app.onrender.com/api',
+    defaultValue: 'http://10.0.2.2:3000/api',
   );
 
-  /// Render Free "ngủ" sau 15 phút, lần gọi đầu có thể mất ~30-50 giây.
+  /// Thời gian chờ kết nối
   static const Duration timeout = Duration(seconds: 60);
 }

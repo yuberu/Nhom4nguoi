@@ -1,3 +1,4 @@
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:parking_client/core/format.dart';
 import 'package:parking_client/core/validators.dart';
@@ -43,19 +44,22 @@ void main() {
   });
 
   group('Models', () {
-    test('ParkingLot đọc NUMERIC dạng chuỗi từ PostgreSQL', () {
+    test('ParkingLot đọc dữ liệu Backend mới', () {
       final lot = ParkingLot.fromJson({
         'id': 1,
-        'name': 'Bãi A',
-        'address': 'Hà Nội',
-        'total_slots': 50,
-        'available_slots': '12',
-        'price_per_hour': '15000.00',
-        'image_url': null,
+        'ten': 'Bãi A',
+        'dia_chi': 'Hà Nội',
+        'vi_do': '21.0285',
+        'kinh_do': '105.8542',
+        'created_at': '2026-11-09T08:30:00.000Z',
       });
-      expect(lot.availableSlots, 12);
-      expect(lot.pricePerHour, 15000);
-      expect(lot.isFull, isFalse);
+
+      expect(lot.id, 1);
+      expect(lot.name, 'Bãi A');
+      expect(lot.address, 'Hà Nội');
+      expect(lot.latitude, 21.0285);
+      expect(lot.longitude, 105.8542);
+      expect(lot.createdAt, isNotNull);
     });
 
     test('Vehicle.fromJson', () {
@@ -65,6 +69,7 @@ void main() {
         'type': 'car',
         'brand': 'Toyota Vios',
       });
+
       expect(v.typeLabel, 'Ô tô');
       expect(v.color, isNull);
     });
@@ -79,6 +84,7 @@ void main() {
         'status': 'active',
         'created_at': '2026-11-09T08:30:00.000Z',
       });
+
       expect(b.totalPrice, 30000);
       expect(b.statusLabel, 'Đang giữ chỗ');
       expect(b.createdAt, isNotNull);

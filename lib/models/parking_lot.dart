@@ -1,3 +1,4 @@
+
 import 'json_utils.dart';
 
 class ParkingLot {
@@ -5,32 +6,28 @@ class ParkingLot {
     required this.id,
     required this.name,
     required this.address,
-    required this.totalSlots,
-    required this.availableSlots,
-    required this.pricePerHour,
-    this.imageUrl,
-    this.description,
+    required this.latitude,
+    required this.longitude,
+    this.createdAt,
   });
 
   final int id;
   final String name;
   final String address;
-  final int totalSlots;
-  final int availableSlots;
-  final double pricePerHour;
-  final String? imageUrl;
-  final String? description;
+  final double latitude;
+  final double longitude;
+  final DateTime? createdAt;
 
-  bool get isFull => availableSlots <= 0;
-
-  factory ParkingLot.fromJson(Map<String, dynamic> json) => ParkingLot(
-        id: toInt(json['id']),
-        name: toStr(json['name']) ?? '',
-        address: toStr(json['address']) ?? '',
-        totalSlots: toInt(json['total_slots']),
-        availableSlots: toInt(json['available_slots']),
-        pricePerHour: toDouble(json['price_per_hour']),
-        imageUrl: toStr(json['image_url']),
-        description: toStr(json['description']),
-      );
+  factory ParkingLot.fromJson(Map<String, dynamic> json) {
+    return ParkingLot(
+      id: toInt(json['id']),
+      name: toStr(json['ten']) ?? '',
+      address: toStr(json['dia_chi']) ?? '',
+      latitude: toDouble(json['vi_do']),
+      longitude: toDouble(json['kinh_do']),
+      createdAt: json['created_at'] == null
+          ? null
+          : DateTime.tryParse(json['created_at'].toString()),
+    );
+  }
 }
