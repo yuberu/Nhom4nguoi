@@ -8,6 +8,7 @@ import baiXeRoutes from './routes/bai-xe.js';
 import datChoRoutes from './routes/dat-cho.js';
 import luotGuiRoutes from './routes/luot-gui.js';
 import veThangRouter from './routes/ve-thang.js';
+import xeRoutes from './routes/xe.js';
 dotenv.config();
 
 const app = express();
@@ -22,6 +23,7 @@ app.use('/api/bai-xe', baiXeRoutes);
 app.use('/api/dat-cho', datChoRoutes);
 app.use('/api/luot-gui', luotGuiRoutes);
 app.use('/api/ve-thang', veThangRouter);
+app.use('/api/xe', xeRoutes);
 
 // Trang kiểm tra Backend
 app.get('/', (req, res) => {

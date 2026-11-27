@@ -1,3 +1,4 @@
+
 import '../core/api_client.dart';
 import '../models/app_user.dart';
 import '../models/booking.dart';
@@ -5,41 +6,52 @@ import '../models/parking_lot.dart';
 import '../models/vehicle.dart';
 
 class AuthResult {
-  const AuthResult({required this.token, required this.user});
+  const AuthResult({
+    required this.token,
+    required this.user,
+  });
 
   final String token;
   final AppUser user;
 }
 
-/// ===== SỬA Ở ĐÂY CHO KHỚP BACKEND =====
-/// Đường dẫn (xem các dòng app.use('/api/...') trong server)
-const String kVehiclesPath = '/phuong-tien'; // TODO: đổi cho đúng
-const String kBookingsPath = '/dat-cho'; // TODO: đổi cho đúng
+// ================= ĐƯỜNG DẪN API =================
 
-/// Tên field gửi lên khi tạo đặt chỗ
-const String kBookingLotKey = 'baiXeId'; // TODO: đổi cho đúng
-const String kBookingVehicleKey = 'phuongTienId'; // TODO: đổi cho đúng
-const String kBookingHoursKey = 'soGio'; // TODO: đổi cho đúng
-/// ======================================
+const String kVehiclesPath = '/xe';
+const String kBookingsPath = '/dat-cho';
 
-/// Toàn bộ lời gọi API tới Backend Node.js/Express.
+// Các trường API đặt chỗ.
+// Chưa thay đổi cho đến khi kiểm tra Backend đặt chỗ.
+const String kBookingLotKey = 'baiXeId';
+const String kBookingVehicleKey = 'xeId';
+const String kBookingHoursKey = 'soGio';
+
+// ==================================================
+
 class ParkingService {
-  ParkingService({ApiClient? client}) : _api = client ?? ApiClient.instance;
+  ParkingService({ApiClient? client})
+      : _api = client ?? ApiClient.instance;
 
   final ApiClient _api;
 
-  // ---------------- XÁC THỰC ----------------
+  // ================= XÁC THỰC =================
 
-  Future<AuthResult> login(String email, String password) async {
+  Future<AuthResult> login(
+    String email,
+    String password,
+  ) async {
     final data = _asMap(
       await _api.post('/auth/dang-nhap', {
         'email': email,
         'matKhau': password,
       }),
     );
+
     return AuthResult(
       token: data['token'].toString(),
-      user: AppUser.fromJson(_asMap(data['nguoiDung'])),
+      user: AppUser.fromJson(
+        _asMap(data['nguoiDung']),
+      ),
     );
   }
 
@@ -57,32 +69,52 @@ class ParkingService {
         'matKhau': password,
       }),
     );
-    return AppUser.fromJson(_asMap(data['nguoiDung']));
+
+    return AppUser.fromJson(
+      _asMap(data['nguoiDung']),
+    );
   }
 
   Future<AppUser> me() async {
-    final data = _asMap(await _api.get('/auth/me'));
-    return AppUser.fromJson(_asMap(data['nguoiDung']));
+    final data = _asMap(
+      await _api.get('/auth/me'),
+    );
+
+    return AppUser.fromJson(
+      _asMap(data['nguoiDung']),
+    );
   }
 
-  // ---------------- BÃI XE ----------------
+  // ================= BÃI XE =================
 
   Future<List<ParkingLot>> getLots() async {
     final response = await _api.get('/bai-xe');
+
     return _asList(response)
-        .map((e) => ParkingLot.fromJson(_asMap(e)))
+        .map(
+          (e) => ParkingLot.fromJson(
+            _asMap(e),
+          ),
+        )
         .toList(growable: true);
   }
 
-  // ---------------- PHƯƠNG TIỆN ----------------
+  // ================= PHƯƠNG TIỆN =================
 
+  // Lấy danh sách xe
   Future<List<Vehicle>> getVehicles() async {
     final response = await _api.get(kVehiclesPath);
+
     return _asList(response)
-        .map((e) => Vehicle.fromJson(_asMap(e)))
+        .map(
+          (e) => Vehicle.fromJson(
+            _asMap(e),
+          ),
+        )
         .toList(growable: true);
   }
 
+  // Thêm xe
   Future<Vehicle> createVehicle({
     required String plate,
     required String type,
@@ -91,11 +123,20 @@ class ParkingService {
   }) async {
     final data = await _api.post(
       kVehiclesPath,
-      Vehicle.toPayload(plate: plate, type: type, brand: brand, color: color),
+      Vehicle.toPayload(
+        plate: plate,
+        type: type,
+        brand: brand,
+        color: color,
+      ),
     );
-    return Vehicle.fromJson(_unwrapMap(data));
+
+    return Vehicle.fromJson(
+      _unwrapMap(data),
+    );
   }
 
+  // Sửa xe
   Future<Vehicle> updateVehicle(
     int id, {
     required String plate,
@@ -105,57 +146,114 @@ class ParkingService {
   }) async {
     final data = await _api.put(
       '$kVehiclesPath/$id',
-      Vehicle.toPayload(plate: plate, type: type, brand: brand, color: color),
+      Vehicle.toPayload(
+        plate: plate,
+        type: type,
+        brand: brand,
+        color: color,
+      ),
     );
-    return Vehicle.fromJson(_unwrapMap(data));
+
+    return Vehicle.fromJson(
+      _unwrapMap(data),
+    );
   }
 
+  // Xóa xe
   Future<void> deleteVehicle(int id) async {
-    await _api.delete('$kVehiclesPath/$id');
+    await _api.delete(
+      '$kVehiclesPath/$id',
+    );
   }
 
-  // ---------------- ĐẶT CHỖ ----------------
+  // ================= ĐẶT CHỖ =================
 
   Future<List<Booking>> getBookings() async {
     final response = await _api.get(kBookingsPath);
+
     return _asList(response)
-        .map((e) => Booking.fromJson(_asMap(e)))
+        .map(
+          (e) => Booking.fromJson(
+            _asMap(e),
+          ),
+        )
         .toList(growable: true);
   }
 
-  Future<Booking> createBooking({
-    required int lotId,
-    required int vehicleId,
-    required int hours,
-  }) async {
-    final data = await _api.post(kBookingsPath, {
-      kBookingLotKey: lotId,
-      kBookingVehicleKey: vehicleId,
-      kBookingHoursKey: hours,
-    });
-    return Booking.fromJson(_unwrapMap(data));
+ Future<Booking> createBooking({
+  required int lotId,
+  required int vehicleId,
+  required int hours,
+}) async {
+  final start = DateTime.now();
+  final end = start.add(Duration(hours: hours));
+
+  final data = await _api.post(
+    kBookingsPath,
+    {
+      'bai_xe_id': lotId,
+      'xe_id': vehicleId,
+      'thoi_gian_bat_dau': start.toUtc().toIso8601String(),
+      'thoi_gian_ket_thuc': end.toUtc().toIso8601String(),
+    },
+  );
+
+  return Booking.fromJson(_unwrapMap(data));
+}
   }
 
-  // ---------------- HÀM HỖ TRỢ ----------------
+  // ================= HÀM HỖ TRỢ =================
 
+  // Chuyển dữ liệu thành Map
   Map<String, dynamic> _asMap(dynamic data) {
-    if (data is Map) return Map<String, dynamic>.from(data);
-    throw ApiException('Dữ liệu máy chủ trả về không hợp lệ.');
+    if (data is Map) {
+      return Map<String, dynamic>.from(data);
+    }
+
+    throw ApiException(
+      'Dữ liệu máy chủ trả về không hợp lệ.',
+    );
   }
 
-  /// Nhận Map trực tiếp hoặc Map bọc trong du_lieu / data.
+  // Đọc Map được Backend bọc trong duLieu
   Map<String, dynamic> _unwrapMap(dynamic data) {
     final map = _asMap(data);
-    if (map['du_lieu'] is Map) return _asMap(map['du_lieu']);
-    if (map['data'] is Map) return _asMap(map['data']);
+
+    if (map['du_lieu'] is Map) {  
+      return _asMap(map['du_lieu']);
+    }
+
+    if (map['duLieu'] is Map) {
+      return _asMap(map['duLieu']);
+    }
+
+    if (map['data'] is Map) {
+      return _asMap(map['data']);
+    }
+
     return map;
   }
 
-  /// Nhận List trực tiếp hoặc Map chứa du_lieu / data.
+  // Đọc danh sách được Backend bọc trong duLieu
   List<dynamic> _asList(dynamic data) {
-    if (data is List) return data;
-    if (data is Map && data['du_lieu'] is List) return data['du_lieu'] as List;
-    if (data is Map && data['data'] is List) return data['data'] as List;
-    throw ApiException('Dữ liệu máy chủ trả về không hợp lệ.');
+    if (data is List) {
+      return data;
+    }
+
+    if (data is Map && data['du_lieu'] is List) {
+      return data['du_lieu'] as List;
+    }
+
+    if (data is Map && data['duLieu'] is List) {
+      return data['duLieu'] as List;
+    }
+
+    if (data is Map && data['data'] is List) {
+      return data['data'] as List;
+    }
+
+    throw ApiException(
+      'Dữ liệu máy chủ trả về không hợp lệ.',
+    );
   }
-}
+
